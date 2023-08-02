@@ -8,7 +8,11 @@ def search_api(query, k=2):
                 'query': query,
                     'k': k
                     }
+
+    now = time()
     response = requests.get(base_url, params=params)
+    later = time()
+    took = later - now
 
     if response.status_code == 200:
         results = json.loads(response.text)
@@ -24,10 +28,12 @@ def search_api(query, k=2):
             print(f"Rank {rank}: (PID: {pid}, Probability: {prob}, Score: {score})\n{text}\n")
         else:
             print(f"reponse: {response.status_code}")
+    print("Response took ", took, "seconds.")
 
 
 if __name__ == "__main__":
     num = input("k: ")
+    
     while True:
         query = input("Query: ")
         search_api(query, k=num)
