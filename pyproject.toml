@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "colbert"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.13"
+faiss-gpu = "^1.7.2"
+bitarray = "^2.8.0"
+datasets = "^2.14.1"
+gitpython = "^3.1.32"
+ninja = "^1.11.1"
+scipy = "^1.11.1"
+spacy = "^3.6.0"
+tqdm = "^4.65.0"
+transformers = "^4.31.0"
+ujson = "^5.8.0"
+flask = "^2.3.2"
+polars = "^0.18.10"
+python-dotenv = "^1.0.0"
+requests = "^2.31.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

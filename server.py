@@ -2,18 +2,35 @@ from flask import Flask, render_template, request
 from functools import lru_cache
 import math
 import os
+import sys
 from dotenv import load_dotenv
+from main import get_coll
 
 from colbert.infra import Run, RunConfig, ColBERTConfig
 from colbert import Searcher
 
 load_dotenv()
+app = Flask(__name__)
 
 INDEX_NAME = os.getenv("INDEX_NAME")
 INDEX_ROOT = os.getenv("INDEX_ROOT")
-app = Flask(__name__)
+index_path = f"{INDEX_ROOT}/{INDEX_NAME}"
+print("index_path", index_path)
 
-searcher = Searcher(index=f"{INDEX_ROOT}/{INDEX_NAME}")
+
+
+try:
+    collection_path = sys.argv[1]
+except:
+    collection_path = input("input file: ")
+
+print("loading collection, this may take a few minutes...")
+collection = get_coll(collection_path)
+print("done loading collection")
+
+searcher = Searcher(index=index_path, collection=collection)
+print(searcher)
+
 counter = {"api" : 0}
 
 @lru_cache(maxsize=1000000)
