@@ -55,7 +55,7 @@ class IndexScorer(IndexLoader, CandidateGeneration):
                     pathlib.Path(__file__).parent.resolve(), "decompress_residuals.cpp"
                 ),
             ],
-            extra_cflags=["-O3"],
+            extra_cflags=["-O3", "-std=c++17"],
             verbose=os.getenv("COLBERT_LOAD_TORCH_EXTENSION_VERBOSE", "False") == "True",
         )
         cls.decompress_residuals = decompress_residuals_cpp.decompress_residuals_cpp

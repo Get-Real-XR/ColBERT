@@ -110,6 +110,7 @@ class ResidualCodec:
                     pathlib.Path(__file__).parent.resolve(), "decompress_residuals.cu"
                 ),
             ],
+            extra_cflags=["-std=c++17"],
             verbose=os.getenv("COLBERT_LOAD_TORCH_EXTENSION_VERBOSE", "False") == "True",
         )
         cls.decompress_residuals = decompress_residuals_cpp.decompress_residuals_cpp
